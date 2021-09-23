@@ -2,6 +2,7 @@ package unisinos.unitunes.authentication.api.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,13 +35,14 @@ public class CustomUserController {
   @PostMapping
   @ResponseBody
   @ResponseStatus(HttpStatus.CREATED)
+  @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
   public Long save(@Valid @RequestBody CustomUser user) {
     return service.save(user).getId();
   }
 
   @PostMapping("/credits/{id}")
   @ResponseBody
-  public void addCredits(@PathVariable("id") Long id, @RequestBody BigDecimal value) {
-    service.addCredits(id, value);
+  public BigDecimal addCredits(@PathVariable("id") Long id, @RequestBody BigDecimal value) {
+    return service.addCredits(id, value);
   }
 }

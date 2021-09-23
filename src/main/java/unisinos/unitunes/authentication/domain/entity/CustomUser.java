@@ -45,7 +45,6 @@ public class CustomUser {
   @Size(min = 0, max = 255)
   String email;
 
-  @JsonIgnore
   @Size(min = 0, max = 255)
   String password;
 

@@ -1,6 +1,6 @@
 package unisinos.unitunes.authentication.domain.enums;
 
 public enum UserType {
-  ACADEMIC,
-  ADMINISTRATOR
+  ROLE_ACADEMIC,
+  ROLE_ADMIN
 }
